@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!--
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
+		<relativePath/>
+	</parent>
+	-->
+	<parent>
+		<groupId>com.microsoft.appservice</groupId>
+		<artifactId>appservice-java-samples-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>io.javabrains</groupId>
+	<artifactId>movie-info-service</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>movie-info-service</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.maven-replacer-plugin/replacer -->
+		<dependency>
+			<groupId>com.google.code.maven-replacer-plugin</groupId>
+			<artifactId>replacer</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<inherited>false</inherited>
+				<version>1.9.1</version>
+				<configuration>
+				<schemaVersion>V2</schemaVersion>
+				<resourceGroup>${timestamp}-example-springboot-microservices-rg</resourceGroup>
+				<appName>${timestamp}-movie-info-service</appName>
+				<pricingTier>F1</pricingTier>
+				<region>westeurope</region>
+				<runtime>
+					<os>windows</os>
+					<javaVersion>1.8</javaVersion>
+					<webContainer>java 8</webContainer>
+				</runtime>
+				<deployment>
+					<resources>
+					<resource>
+						<directory>${project.basedir}/target</directory>
+						<includes>
+						<include>*.jar</include>
+						</includes>
+					</resource>
+					</resources>
+				</deployment>
+				<skip>false</skip>
+				</configuration>
+			</plugin>
+			<plugin> 
+				<groupId>com.google.code.maven-replacer-plugin</groupId> 
+				<artifactId>replacer</artifactId> 
+				<version>1.5.3</version> 
+				<executions> 
+				<execution> 
+					<phase>prepare-package</phase> 
+					<goals> 
+						<goal>replace</goal> 
+					</goals>
+				</execution> 
+				</executions> 
+				<configuration> 
+				<ignoreMissingFile>true</ignoreMissingFile> 
+				<file>${project.basedir}/../client.application.properties.template</file> 
+				<outputFile>${project.basedir}/src/main/resources/application.properties</outputFile> 
+				<regex>false</regex>
+				<replacements>
+					<replacement>
+						<token>SERVICE_NAME</token> 
+						<value>${project.name}</value>
+					</replacement>
+					<replacement>
+						<token>TIMESTAMP</token> 
+						<value>${timestamp}</value>
+					</replacement>
+				</replacements>
+				</configuration> 
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+	</repositories>
+
+</project>

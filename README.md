@@ -1,57 +1,34 @@
-# Project Name
+# Netflix Eureka on App Service (Windows)
 
-(short, 1-3 sentenced, description of the project)
+This is a sample project to demonstrate how to configure Netflix Eureka for use on Azure Apps Service.
 
 ## Features
 
 This project framework provides the following features:
 
-* Feature 1
-* Feature 2
-* ...
+* 1 discovery server
+* 2 services which provide data
+* 1 service which consumes the data of the other 2
+* Maven project files which are used to manage dependencies, specify build operations, and deploy to Azure
 
 ## Getting Started
 
 ### Prerequisites
 
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
+* Java 1.8
+* Maven
+* Azure CLI
 
 ### Quickstart
-(Add steps to get up and running quickly)
 
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
+Ensure you are logged into the Azure CLI with `az login`
 
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
+1. git clone <https://github.com/Azure-Samples/app-service-netflix-eureka-windows.git>
+2. cd app-service-netflix-eureka-windows
+3. `mvn clean package azure-webapp:deploy -DskipTests`
 
 ## Resources
 
-(Any additional resources or related projects)
+See [this blog post](https://azure.github.io/AppService/2020/08/04/Netflix-Eureka-On-Apps-Service-Windows.html) for more information about configuring Netflix Eurkea for App Service.
 
-- Link to supporting information
-- Link to similar sample
-- ...
+This project is based on [this project](https://github.com/koushikkothagal/spring-boot-microservices-workshop), which demonstrates the basic principles of Netflix Eureka.
