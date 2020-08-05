@@ -74,8 +74,8 @@
 				<version>1.9.1</version>
 				<configuration>
 				<schemaVersion>V2</schemaVersion>
-				<resourceGroup>${timestamp}-example-springboot-microservices-rg</resourceGroup>
-				<appName>${timestamp}-movie-info-service</appName>
+				<resourceGroup>${prefix}-example-netflix-eureka-rg</resourceGroup>
+				<appName>${prefix}-movie-info-service</appName>
 				<pricingTier>F1</pricingTier>
 				<region>westeurope</region>
 				<runtime>
@@ -119,8 +119,8 @@
 						<value>${project.name}</value>
 					</replacement>
 					<replacement>
-						<token>TIMESTAMP</token> 
-						<value>${timestamp}</value>
+						<token>PREFIX</token> 
+						<value>${prefix}</value>
 					</replacement>
 				</replacements>
 				</configuration> 

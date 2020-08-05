@@ -15,7 +15,7 @@ This project framework provides the following features:
 
 ### Prerequisites
 
-* Java 1.8
+* Java JDK 1.8
 * Maven
 * Azure CLI
 
