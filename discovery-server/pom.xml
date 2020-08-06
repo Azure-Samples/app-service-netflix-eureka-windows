@@ -25,7 +25,7 @@
     <java.version>1.8</java.version>  
     <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version> 
   </properties>  
-  <dependencies> 
+  <dependencies>
     <dependency> 
       <groupId>org.springframework.cloud</groupId>  
       <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId> 
@@ -108,7 +108,7 @@
         <version>1.5.3</version> 
         <executions> 
           <execution> 
-            <phase>validate</phase> 
+            <phase>prepare-package</phase> 
               <goals> 
                 <goal>replace</goal> 
               </goals>
@@ -116,8 +116,8 @@
         </executions> 
         <configuration> 
           <ignoreMissingFile>true</ignoreMissingFile> 
-          <file>../server.application.properties.template</file> 
-          <outputFile>src/main/resources/application.properties</outputFile> 
+          <file>${project.basedir}/../server.application.properties.template</file> 
+          <outputFile>${project.basedir}/src/main/resources/application.properties</outputFile> 
           <regex>false</regex> 
           <token>[PREFIX]</token> 
           <value>${prefix}</value> 
