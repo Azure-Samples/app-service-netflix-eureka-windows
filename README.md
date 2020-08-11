@@ -25,10 +25,10 @@ Ensure you are logged into the Azure CLI with `az login`
 
 1. git clone <https://github.com/Azure-Samples/app-service-netflix-eureka-windows.git>
 2. cd app-service-netflix-eureka-windows
-3. `mvn clean package azure-webapp:deploy -DskipTests`
+3. `mvn clean prepare-package package azure-webapp:deploy -DskipTests`
 
 ## Resources
 
-See [this blog post](https://azure.github.io/AppService/2020/08/04/Netflix-Eureka-On-Apps-Service-Windows.html) for more information about configuring Netflix Eurkea for App Service.
+See [this blog post](https://azure.github.io/AppService/2020/08/04/Netflix-Eureka-On-Apps-Service-Windows.html) for more information about configuring Netflix Eureka for App Service.
 
 This project is based on [this project](https://github.com/koushikkothagal/spring-boot-microservices-workshop), which demonstrates the basic principles of Netflix Eureka.
